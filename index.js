@@ -10,15 +10,15 @@ let database = [
 ];
 
 app.get('/api/locations', (req, res) => {
-  const param = req.params.id
+  const q = req.query
   res.header("Content-Type",'application/json')
-  res.json(database)
+  req.query.p === 'true' ? res.send(JSON.stringify(database, null, 4)) : res.json(database)
 })
 
-app.get('/api/locations/:p', (req, res) => {
+/* app.get('/api/locations/:p', (req, res) => {
   res.header("Content-Type",'application/json')
   req.params.p === 'pretty' ? res.send(JSON.stringify(database, null, 4)) : res.json(database)
-})
+}) */
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
